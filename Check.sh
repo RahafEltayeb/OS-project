@@ -18,11 +18,12 @@ else
     # Display found files and change their permissions
     echo "Found files with 777 permissions:" | tee -a "$log_file"
     echo "$files" | tee -a "$log_file"
-    #ls -l "$files" #to check permission changes
+    echo "Check permission of file before change: " >> "$log_file"
+    ls -l "$files" >> "$log_file" #to check permission changes
     for file in $files; do
         chmod 700 "$file"  # Change permission to 700
         echo "Changed permissions for: $file" >> "$log_file"
-        #ls -l "$files" #to check permission changes
+        ls -l "$files" >> "$log_file" #to check permission changes
     done
 fi
 
