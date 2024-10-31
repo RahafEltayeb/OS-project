@@ -2,11 +2,25 @@
 Project of 2 
 
 #Server
-
+sudo useradd -m -d /home/machine1 machine1
+sudo useradd -m -d /home/machine2 machine2
+sudo passwd machine1 #machine1
+sudo passwd machine2 #machine2
+sudo apt-get install -y openssh-server
+sudo apt-get install -y sshpass
+scp -V 
+sftp -V #check the versions of sftp and scp assuming they are already installed
 #Client#1
-
+sudo apt-get install -y openssh-client -y
+sudo apt-get install -y sshpass
+ssh machine1@172.20.10.3 #ssh connection with server
 
 #Client#2
+sudo apt-get install -y openssh-client -y
+sudo apt-get install -y sshpass
+sudo apt install net-tools
+ssh machine2@172.20.10.3 #ssh connection with server
+
 #Script 1
 Setting up email with SMTP on Ubuntu Servers:
 Configuration:
