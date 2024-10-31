@@ -11,9 +11,9 @@ do
  read serveruser
  echo "Enter Server Password"
  #user prompt
- read -s serverpass
+ read serverpass
 
- sshpass -p $serverpass ssh -o StrictHostKeyChecking=no $serveruser@192.168.10.27
+ sshpass -p $serverpass ssh -o StrictHostKeyChecking=no $serveruser@172.20.10.3
  
  if [ $? -ne 0 ]
   then
@@ -25,17 +25,18 @@ do
    break
   fi
 done
-if [ $attempt -gt $LIMIT ]
+if [ $attempt -eq $LIMIT ]
 then
  echo "Unauthorized user!"
  # Append local file content to remote file using ssh with a 30-second timeout
  
- timeout 30s sshpass -p "pass1" sftp "client1@192.168.10.27" <<EOF
+ timeout 30s sshpass -p "machine1" sftp "machine1@172.20.10.3" <<EOF
         
-put client_invalid_attempts.log
+ put client_invalid_attempts.log
 EOF
 fi
 
  #echo "logout in 30 sec"
-
+ sleep 30
  exit
+#  >> client_invalid_attempts.log
